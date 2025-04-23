@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import "@alsacia/style-dictionary";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+
+html, body, #root {
+  font-family: 'Cairo', sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.main-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  padding: var(--sizes-general-BASE, 16px);
+  align-self: stretch;
+}
+
+.delete-img{
+  width: 200px;
+  height: 225px;
+}
+
+.status-main-container{
+  display: flex;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  flex-direction: column;
+  padding: var(--sizes-general-BASE, 16px);
+  align-self: stretch;
+  gap: var(--S-MD, 20px);
+}
+
+.status-img-container{
+  flex-direction: row;
+  gap: 10px;
+}
+
