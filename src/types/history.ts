@@ -1,5 +1,5 @@
 export interface Interaction {
   usuario: string;
-  tipoContenedor: 'vidrio' | 'orgánico' | 'plástico' | 'papel/cartón';
+  contenedor: 'vidrio' | 'orgánico' | 'plástico' | 'papel/cartón' | 'metal' | 'general' | 'otros';
   fechaHora: string;
 }

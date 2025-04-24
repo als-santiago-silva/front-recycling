@@ -5,35 +5,38 @@ import HistoryList from './components/HistoryList';
 import deleteIcon from '../public/delete.svg';
 
 const App = () => {
-  const [conexion, setConexion] = useState<string>('Conectando...');
+  const [tachoSeleccionado, setTachoSeleccionado] = useState<string | null>(null);
 
   const tiposTachos = [
     'vidrio', 'orgánico', 'plástico', 'papel/cartón', 'metal', 'general', 'otros'
   ];
 
   useEffect(() => {
-    setStatusCallback(setConexion);
     connectSocket();
   }, []);
 
   return (
-    <div className="bg-dark-background main-container gap-6">
+    <div className="bg-dark-background main-container gap-25">
       <div className="status-main-container" style={{ width: '524px' }}>
-      <div className="status-container">
-        <h1 className="text-brand-primary">Estado de las tapas</h1>
-        <p className="text-brand-primary">Conexión: {conexion}</p>
+        <div className="status-container">
+        </div>
+
+        {tiposTachos.map((tipo) => (
+          <TapaStatus
+            key={tipo}
+            tipo={tipo}
+            seleccionado={tachoSeleccionado === tipo}
+            onSeleccionar={() => setTachoSeleccionado(tipo)}
+          />
+        ))}
       </div>
 
-      {tiposTachos.map((tipo) => (
-        <TapaStatus key={tipo} tipo={tipo} />
-      ))}
-      </div>
-      
-      <div className="delete-img-container flex justify-center">
+      <div className="delete-img-container flex justify-center flex-col items-center gap-2 text-[35px] mt-16">
+        <h1 className="text-white">50%</h1>
         <img src={deleteIcon} alt="Delete Icon" className="delete-img" />
       </div>
 
-      <HistoryList />
+      {tachoSeleccionado && <HistoryList tipo={tachoSeleccionado} />}
     </div>
   );
 };

@@ -1,9 +1,11 @@
 import { Interaction } from '../types/history';
 
-const mapContainerType = (bucketId: string): Interaction['tipoContenedor'] => {
+const mapContainerType = (bucketId: string): Interaction['contenedor'] => {
   switch (bucketId) {
     case 'vidrio':
       return 'vidrio';
+    case 'otros':
+      return 'otros';
     case 'organico':
       return 'orgánico';
     case 'plastico':
@@ -34,7 +36,7 @@ export const fetchHistory = async (): Promise<Interaction[]> => {
 
   return json.docs.map((item: any) => ({
     usuario: item.userId,
-    tipoContenedor: mapContainerType(item.bucketId),
+    contenedor: mapContainerType(item.bucketId),
     fechaHora: item.timestamp
   }));
 };
