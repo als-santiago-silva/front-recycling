@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connectSocket, setStatusCallback } from './websocket';
+import { connectSocket } from './websocket';
 import TapaStatus from './components/TapaStatus';
 import HistoryList from './components/HistoryList';
 import deleteIcon from '../public/delete.svg';
@@ -20,7 +20,6 @@ const App = () => {
       <div className="status-main-container" style={{ width: '524px' }}>
         <div className="status-container">
         </div>
-
         {tiposTachos.map((tipo) => (
           <TapaStatus
             key={tipo}

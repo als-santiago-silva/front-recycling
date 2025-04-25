@@ -31,8 +31,26 @@ const HistoryList: React.FC<HistoryListProps> = ({ tipo }) => {
     return () => clearInterval(interval);
   }, []);
 
-  if (loading) return <p className="text-white">Cargando historial...</p>;
-  if (error) return <p className="text-red-500">Error: {error}</p>;
+  if (loading) {
+    return (
+      <div className="bg-dark-background history-container rounded-lg p-4 space-y-2">
+        <h2 className="text-white text-sm font-semibold">Cargando historial de: <span className="capitalize">{tipo}</span></h2>
+        <div className="flex justify-center items-center space-x-2">
+          <div className="w-8 h-8 border-4 border-t-4 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-white">Cargando...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-dark-background history-container rounded-lg p-4 space-y-2">
+        <h2 className="text-white text-sm font-semibold">Historial de: <span className="capitalize">{tipo}</span></h2>
+        <p className="text-red-500">No se pudo cargar el historial en este momento. Intenta de nuevo más tarde.</p>
+      </div>
+    );
+  }
 
   const historyFiltrado = history.filter((item) => item.contenedor === tipo);
 
